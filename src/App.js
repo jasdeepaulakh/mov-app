@@ -13,6 +13,14 @@ class App extends Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
+  componentDidMount(){
+    fetch('https://api.themoviedb.org/3/movie/popular?page=1&api_key=' + apiToken)
+      .then(response => response.json())
+      .then(data => this.setState({
+        data: data.results
+      }))
+  }
+
   handleClick() {
     fetch(url + this.state.inputValue)
       .then(response => response.json())
